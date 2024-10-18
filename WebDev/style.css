@@ -1,0 +1,98 @@
+body {
+    background-color: #f1f8e9; /* Light green background */
+    color: #2c3e50; /* Darker text color for better contrast */
+    font-family: 'Lato', sans-serif; /* Updated font */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: hsl(138, 64%, 44%); /* Header background color */
+    color: white; /* Header text color */
+    width: 100%; /* Full width header */
+    text-align: center;
+    padding: 10px 0; /* Padding for header */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque white background */
+    padding: 30px;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Max width for larger screens */
+    border: 2px solid #5bdb34; /* Blue border around the container */
+    text-align: center; /* Center text inside the container */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.form-group label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 5px; /* Space below labels */
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 1em; /* Input text size */
+    font-family: 'Lato', sans-serif; /* Same font for inputs */
+}
+
+button {
+    background-color: #34db45; /* Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 12px 20px; /* More padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Inline block */
+    font-size: 18px; /* Larger text */
+    margin: 4px 2px; /* Margins */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #29b959; /* Darker blue on hover */
+}
+
+footer {
+    margin-top: auto; /* Push footer to bottom */
+    background-color: #29b952; /* Footer background color */
+    color: white; /* Footer text color */
+    text-align: center;
+    width: 100%; /* Full width footer */
+    padding: 10px 0; /* Padding for footer */
+}
+
+.start-button {
+    display: inline-block; /* Inline block */
+    background-color: hwb(129 20% 14%); /* Blue background */
+    color: white; /* White text */
+    padding: 12px 20px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* No underline */
+    font-size: 18px; /* Larger text */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.start-button:hover {
+    background-color: #29b94d; /* Darker blue on hover */
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%; /* Full width on small screens */
+    }
+}
+

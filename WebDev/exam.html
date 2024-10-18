@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Exam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>C Programming Exam</h1>
+    </header>
+
+    <div class="container">
+        <div id="timer">Time left: <span id="time">30</span> seconds</div>
+        <form id="examForm">
+            <div class="question">
+                <p>1. What does C stand for?</p>
+                <label><input type="radio" name="q1" value="A"> A. Compile</label><br>
+                <label><input type="radio" name="q1" value="B"> B. Code</label><br>
+                <label><input type="radio" name="q1" value="C"> C. Compiler</label><br>
+                <label><input type="radio" name="q1" value="D"> D. Coder</label><br>
+            </div>
+
+            <div class="question">
+                <p>2. Which of the following is a correct way to declare a variable in C?</p>
+                <label><input type="radio" name="q2" value="A"> A. int var;</label><br>
+                <label><input type="radio" name="q2" value="B"> B. var int;</label><br>
+                <label><input type="radio" name="q2" value="C"> C. int = var;</label><br>
+                <label><input type="radio" name="q2" value="D"> D. var: int;</label><br>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="result" style="display:none; margin-top:20px;">
+            <h2>Exam Results</h2>
+            <p id="grade"></p>
+            <p id="feedback"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 C Exam Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener("DOMContentLoaded", function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            if (!isLoggedIn) {
+                alert("Please log in to access the exam page.");
+                window.location.href = "login.html"; // Redirect to login if not logged in
+            }
+        });
+
+        // Timer functionality
+        let timeLeft = 30;
+        const timerElement = document.getElementById("time");
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                alert("Time's up! Submitting the exam...");
+                gradeExam(); // Automatically submit and grade the exam when time is up
+            }
+        }, 1000);
+
+        // Correct answers
+        const correctAnswers = {
+            q1: 'C',
+            q2: 'A'
+        };
+
+        // Grade the exam
+        function gradeExam() {
+            clearInterval(countdown); // Stop the timer
+            const form = document.forms["examForm"];
+            let score = 0;
+            let feedback = "";
+
+            // Check answers
+            for (const question in correctAnswers) {
+                const selectedOption = form[question].value;
+                if (selectedOption === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            // Calculate the grade
+            const totalQuestions = Object.keys(correctAnswers).length;
+            const percentage = (score / totalQuestions) * 100;
+            let gradeMessage = `You answered ${score} out of ${totalQuestions} correctly.`;
+
+            // Feedback
+            feedback = `
+                1. Correct answer for "What does C stand for?": Compiler<br>
+                2. Correct answer for "Correct variable declaration": int var;<br>
+            `;
+
+            // Display result and feedback
+            document.getElementById("grade").innerHTML = `Your score: ${percentage}%`;
+            document.getElementById("feedback").innerHTML = feedback;
+            document.getElementById("result").style.display = "block";
+
+            // Hide the form
+            document.getElementById("examForm").style.display = "none";
+        }
+
+        // Form submission handler
+        document.getElementById("examForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from refreshing the page
+            gradeExam(); // Grade the exam upon form submission
+        });
+    </script>
+</body>
+
+</html>

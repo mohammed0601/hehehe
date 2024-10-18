@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - C Exam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Create an Account</h1>
+    </header>
+
+    <div class="container">
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="message" style="color: red; text-align: center;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 C Exam Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const message = document.getElementById("message");
+
+            message.textContent = ""; // Clear previous messages
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                message.textContent = "Passwords do not match!";
+                return;
+            }
+
+            // Save the new user credentials in localStorage
+            localStorage.setItem("registeredUser", JSON.stringify({ username, password }));
+
+            alert("Sign up successful! Redirecting to login page...");
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    </script>
+</body>
+
+</html>

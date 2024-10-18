@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - C Exam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Login to C Exam Portal</h1>
+    </header>
+
+    <div class="container">
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="message" style="color: red; text-align: center;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 C Exam Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+
+            message.textContent = ""; // Clear previous messages
+
+            // Retrieve registered user credentials from localStorage
+            const registeredUser = JSON.parse(localStorage.getItem("registeredUser"));
+
+            // Check if credentials match
+            if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
+                localStorage.setItem("isLoggedIn", "true"); // Set login flag
+                alert("Login successful! Redirecting to the exam page...");
+                window.location.href = "exam.html"; // Redirect to exam page
+            } else {
+                message.textContent = "Invalid credentials. Please try again.";
+            }
+        });
+    </script>
+</body>
+
+</html>
